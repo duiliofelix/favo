@@ -15,8 +15,9 @@ def run():
     list_parser = subparsers.add_parser('list', help='init help')
 
     ssh_parser = subparsers.add_parser('ssh', help='validate help')
-    ssh_parser.add_argument('vmss', help='vmss name')
-    ssh_parser.add_argument('instance', help='instance number')
+    ssh_parser.add_argument('-g', '--group', help='vmss resource group name')
+    ssh_parser.add_argument('-v', '--vmss', help='vmss name')
+    ssh_parser.add_argument('-i', '--instance', help='instance id')
     
     arguments = parser.parse_args(sys.argv[1:])
     if arguments.command == 'list':
