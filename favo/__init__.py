@@ -12,9 +12,9 @@ def run():
         dest='command',
     )
     
-    list_parser = subparsers.add_parser('list', help='init help')
+    list_parser = subparsers.add_parser('list', help='List all VMSS in a resource group')
 
-    ssh_parser = subparsers.add_parser('ssh', help='validate help')
+    ssh_parser = subparsers.add_parser('ssh', help='Start ssh session on some VMSS Instance')
     ssh_parser.add_argument('-g', '--group', help='vmss resource group name')
     ssh_parser.add_argument('-v', '--vmss', help='vmss name')
     ssh_parser.add_argument('-i', '--instance', help='instance id')
