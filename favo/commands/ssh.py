@@ -7,6 +7,17 @@ def parse_instance_id(instance):
     instance['id'] = buff[len(buff) - 1]
     return instance
 
+def show_vm_menu(vms):
+    if len(vms) == 1:
+        return vms[0]['id']
+            
+    vm_list = []
+    for vm in vms:
+        vm_list.append('{} - {}'.format(vm['id'], vm['ip']))
+
+    option = SelectionMenu.get_selection(vm_list)
+    return vms[option]['id']
+
 def ssh_cmd(args):
     group = args.group
     vmss = args.vmss
@@ -24,12 +35,7 @@ def ssh_cmd(args):
     vms = list(map(parse_instance_id, json.loads(vms_str)))
 
     if not instance:
-        vm_list = []
-        for vm in vms:
-            vm_list.append('{} - {}'.format(vm['id'], vm['ip']))
-
-        option = SelectionMenu.get_selection(vm_list)
-        instance = vms[option]['id']
+        instance = show_vm_menu(vms)
 
     for vm in vms:
         if vm['id'] == instance:
